@@ -4,12 +4,12 @@ Disciplina: Programação Orientada a Objetos · Projeto: PetFiap — pet shop &
 
 ## Identificação
 
-**Grupo:** `___` *(preencher com o nome do grupo usado no repositório)*
+**Grupo:** `Gukas`
 
 | Integrante | RM | Turma |
 |---|---|---|
 | Lucas M. | 563667 | `2CCPO` |
-| Kaio Correa | 56433 | `2CCPO` |
+| Kaio Correa | 563443 | `2CCPO` |
 | Gustavo Braga | 562247 | `2CCPO` |
 
 | Campo | |
