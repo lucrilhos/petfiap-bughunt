@@ -4,3 +4,8 @@ bin/
 .settings/
 .classpath
 .project
+
+.idea/
+*.iml
+__MACOSX/
+.DS_Store
