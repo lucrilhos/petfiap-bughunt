@@ -37,7 +37,8 @@ public class Tosa extends Atendimento {
         return 30;
     }
 
-    public int getDuracaoMinutos(String porte) {
+    @Override
+    public int getDuracaoMinutos() {     // era: getDuracaoMinutos(String porte)
         return 60;
     }
 }
