@@ -14,6 +14,18 @@ public class ConsultaVeterinariaTest {
     }
 
     @Test
+    public void deveCustar150ReaisIndependenteDoPorte() {
+        // Arrange
+        ConsultaVeterinaria pequeno = new ConsultaVeterinaria(1, "Mimi", "PEQUENO", "Bruno",
+                LocalDateTime.of(2026, 10, 1, 14, 0));
+        ConsultaVeterinaria grande = new ConsultaVeterinaria(2, "Thor", "GRANDE", "Bruno",
+                LocalDateTime.of(2026, 10, 1, 15, 0));
+
+        assertEquals(150.0, pequeno.calcularPreco(), 0.001);
+        assertEquals(150.0, grande.calcularPreco(), 0.001);
+    }
+
+    @Test
     public void deveAcumular50PontosDeFidelidade() {
         // Act
         int pontos = consultaDaMimi().calcularPontosFidelidade();
@@ -31,3 +43,4 @@ public class ConsultaVeterinariaTest {
         assertEquals(30, duracao);
     }
 }
+
