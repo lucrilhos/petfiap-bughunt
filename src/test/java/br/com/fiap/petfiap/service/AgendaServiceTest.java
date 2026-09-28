@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 // Teste unitario da agenda: NAO sobe o Spring e NAO conecta no Oracle (Aula 15).
@@ -71,6 +72,18 @@ public class AgendaServiceTest {
 
         // O banco NUNCA e acionado com o conflito detectado
         verify(repository, never()).save(any());
+    }
+
+    @Test
+    public void deveRecusarAgendamentoComDataNoPassado() {
+        // Arrange: horario de ontem
+        Banho noPassado = new Banho(1, "Rex", "PEQUENO", "Ana", LocalDateTime.now().minusDays(1));
+
+        // Act + Assert
+        assertThrows(IllegalArgumentException.class, () -> service.agendar(noPassado));
+
+        // O banco nem e consultado
+        verifyNoInteractions(repository);
     }
 
     @Test
