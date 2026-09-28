@@ -23,6 +23,10 @@ public abstract class Atendimento {
 
     private LocalDateTime dataHora;
 
+    public static final String AGENDADO = "AGENDADO";
+    public static final String CONCLUIDO = "CONCLUIDO";
+    public static final String CANCELADO = "CANCELADO";
+
     // AGENDADO, CONCLUIDO ou CANCELADO
     private String status;
 
@@ -35,7 +39,7 @@ public abstract class Atendimento {
         this.petPorte = petPorte;
         this.tutorNome = tutorNome;
         this.dataHora = dataHora;
-        this.status = "AGENDADO";
+        this.status = AGENDADO;
     }
 
     // tipo do atendimento (BANHO, TOSA, CONSULTA)
@@ -54,18 +58,18 @@ public abstract class Atendimento {
 
     // Conclui o atendimento (so pode em AGENDADO)
     public void concluir() {
-        if (!"AGENDADO".equals(status)) {
+        if (!AGENDADO.equals(status)) {
             throw new StatusInvalidoException("Atendimento " + protocolo + " nao pode ser concluido: status " + status);
         }
-        status = "CONCLUIDO";
+        status = CONCLUIDO;
     }
 
     // Cancela o atendimento (so pode em AGENDADO)
     public void cancelar() {
-        if (!"AGENDADO".equals(status)) {
+        if (!AGENDADO.equals(status)) {
             throw new StatusInvalidoException("Atendimento " + protocolo + " nao pode ser cancelado: status " + status);
         }
-        status = "CANCELADO";
+        status = CANCELADO;
     }
 
     // Getters e Setters
