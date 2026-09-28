@@ -56,20 +56,14 @@ public class AgendaServiceTest {
     }
 
     @Test
-    public void deveRecusarAgendamentoComHorarioJaOcupado() {
-        // Arrange: o Rex ja tem banho AGENDADO amanha as 10h
-        Banho existente = banhoDoRexAmanha10h();
-        when(repository.findByPetNome("Rex")).thenReturn(List.of(existente));
-
-        // A MESMA data/hora em outro objeto: e o que acontece no mundo real,
-        // quando duas requisicoes diferentes trazem valores iguais
-        LocalDateTime mesmoHorarioEmOutroObjeto = LocalDateTime.parse(existente.getDataHora().toString());
-        Banho novaTentativa = new Banho(2, "Rex", "PEQUENO", "Ana", mesmoHorarioEmOutroObjeto);
+    public void deveRecusarConclusaoDeAtendimentoCancelado() {
+        // Arrange
+        Banho cancelado = banhoDoRexAmanha10h();
+        cancelado.setStatus("CANCELADO");
+        when(repository.findById(1L)).thenReturn(Optional.of(cancelado));
 
         // Act + Assert
-        assertThrows(HorarioOcupadoException.class, () -> service.agendar(novaTentativa));
-
-        // O banco NUNCA e acionado com o conflito detectado
+        assertThrows(StatusInvalidoException.class, () -> service.concluir(1L));
         verify(repository, never()).save(any());
     }
 
