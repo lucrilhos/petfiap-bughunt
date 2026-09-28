@@ -16,7 +16,7 @@ public class GeradorProtocolo {
 
     public static GeradorProtocolo getInstancia() {
         if (instancia == null) {
-            return new GeradorProtocolo();
+            instancia = new GeradorProtocolo(); // cria a instancia e armazena na variavel
         }
         return instancia;
     }
